@@ -1,0 +1,113 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.1.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx-3.1.xsd">
+
+	<context:component-scan base-package="com.claro.cpymes.*"></context:component-scan>
+	<context:annotation-config />
+
+	<bean
+		class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<value>/WEB-INF/dataSource.properties</value>
+		</property>
+	</bean>
+
+	<bean id="EmKOU"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSourceKOU" />
+		<property name="persistenceUnitName" value="KOU" />
+		<property name="packagesToScan" value="com.claro.cpymes.entity.kou" />
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+		</property>
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="EmCPYMES"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSourceCPYMES" />
+		<property name="persistenceUnitName" value="CPYMES" />
+		<property name="packagesToScan" value="com.claro.cpymes.entity.pymes" />
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+		</property>
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="EmIVR"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSourceIVR" />
+		<property name="persistenceUnitName" value="IVR" />
+		<property name="packagesToScan" value="com.claro.cpymes.entity.ivr" />
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+		</property>
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="dataSourceKOU"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${kou.driver}" />
+		<property name="url" value="${kou.url}" />
+		<property name="username" value="${kou.user}" />
+		<property name="password" value="${kou.password}" />
+	</bean>
+
+	<bean id="dataSourceCPYMES"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${cpymes.driver}" />
+		<property name="url" value="${cpymes.url}" />
+		<property name="username" value="${cpymes.user}" />
+		<property name="password" value="${cpymes.password}" />
+	</bean>
+
+	<bean id="dataSourceIVR"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${ivr.driver}" />
+		<property name="url" value="${ivr.url}" />
+		<property name="username" value="${ivr.user}" />
+		<property name="password" value="${ivr.password}" />
+	</bean>
+
+	<bean id="transactionManagerKOU" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="EmKOU" />
+	</bean>
+
+	<bean id="transactionManagerCPYMES" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="EmCPYMES" />
+	</bean>
+
+	<bean id="transactionManagerIVR" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="EmIVR" />
+	</bean>
+
+	<bean id="persistenceExceptionTranslationPostProcessor"
+		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+
+	<!-- <bean id="loadNitsOnix" class="com.claro.cpymes.service.starup.LoadNitsOnix" 
+		/> -->
+	<bean id="main" class="com.claro.cpymes.service.starup.Main" />
+
+	<tx:annotation-driven transaction-manager="transactionManager" />
+</beans>

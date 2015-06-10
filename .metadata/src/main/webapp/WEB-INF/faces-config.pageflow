@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14339704753970" configfile="/CPYMESS/src/main/webapp/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="login.xhtml" x="554" y="279" id="pf14339704868331" referenceLink="//@navigationRule.4/@navigationCase.0/@toViewId|" outlinks="pf14339704868332" inlinks="pf14339704868333 pf14339704868334" path="/pages/login.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="ivr.xhtml" x="338" y="178" id="pf14339704868335" referenceLink="//@navigationRule.4/@fromViewId|" outlinks="pf14339704868336 pf14339704868334" inlinks="pf14339704868332 pf14339704868337" path="/pages/ivr.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="cpymes.xhtml" x="122" y="279" id="pf14339704868348" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" outlinks="pf14339704868333 pf14339704868337" inlinks="pf14339704868336" path="/pages/cpymes.xhtml"/>
+  <links id="pf14339704868332" target="pf14339704868335" source="pf14339704868331" outcome="true" redirect="true" fromaction="#{login.authenticate}"/>
+  <links id="pf14339704868333" target="pf14339704868331" source="pf14339704868348" outcome="logIn" redirect="true" fromaction="#{cpymes.goIvr}"/>
+  <links id="pf14339704868337" target="pf14339704868335" source="pf14339704868348" outcome="ivr" redirect="true" fromaction="#{cpymes.goIvr}"/>
+  <links id="pf14339704868336" target="pf14339704868348" source="pf14339704868335" outcome="true" redirect="true" fromaction="#{ivr.goCpymes}"/>
+  <links id="pf14339704868334" target="pf14339704868331" source="pf14339704868335" outcome="true" redirect="true" fromaction="#{ivr.gogoLogIn}"/>
+</pageflow:Pageflow>
