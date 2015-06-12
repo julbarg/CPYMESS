@@ -14,7 +14,7 @@
 		<display-name>login.xhtml</display-name>
 		<from-view-id>/pages/login.xhtml</from-view-id>
 		<navigation-case>
-			<from-action>#{login.authenticate}</from-action>
+			<from-action>#{loginView.authenticate}</from-action>
 			<from-outcome>true</from-outcome>
 			<to-view-id>/pages/ivr.xhtml</to-view-id>
 			<redirect />

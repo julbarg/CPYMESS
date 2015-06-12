@@ -3,7 +3,6 @@ package com.claro.cpymes.controller;
 import java.io.IOException;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 
 import org.apache.log4j.LogManager;
@@ -37,7 +36,7 @@ public class Login {
 
    private static final String URL_LOGIN = "login.xhtml";
 
-   @ManagedProperty(value = "#{ivr}")
+   @Autowired
    private IVR ivr;
 
    @PostConstruct
