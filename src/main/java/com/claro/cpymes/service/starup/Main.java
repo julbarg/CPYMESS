@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 import com.claro.cpymes.services.remote.DaemonMySQLService;
 import com.claro.cpymes.util.Constant;
@@ -22,6 +23,7 @@ import com.claro.cpymes.util.Util;
  *
  */
 @Configuration
+@EnableScheduling
 @EnableAsync
 public class Main implements InitializingBean {
 

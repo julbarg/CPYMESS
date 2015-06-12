@@ -105,8 +105,7 @@
 	<bean id="persistenceExceptionTranslationPostProcessor"
 		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
 
-	<!-- <bean id="loadNitsOnix" class="com.claro.cpymes.service.starup.LoadNitsOnix" 
-		/> -->
+	<bean id="loadNitsOnix" class="com.claro.cpymes.service.starup.LoadNitsOnix" />
 	<bean id="main" class="com.claro.cpymes.service.starup.Main" />
 
 	<tx:annotation-driven transaction-manager="transactionManager" />
